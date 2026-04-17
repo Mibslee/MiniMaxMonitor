@@ -21,6 +21,8 @@ targets:
     sources:
       - path: Sources
         type: group
+      - path: AppIcon.appiconset
+        type: folder
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.minimax.monitor

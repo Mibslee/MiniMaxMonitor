@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		208ABFACAD120D08C1C81D9F /* MiniMaxMonitorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0CE252F9EFDE64EA7D9005 /* MiniMaxMonitorApp.swift */; };
+		65B4489A0C6C648ED294A492 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 66CB6047206E3560AF6FA089 /* AppIcon.appiconset */; };
 		90B89B53D256E80DEB309D1C /* UsageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC4D00DC20215449BDDA2F /* UsageManager.swift */; };
 		C1D7222822F43690ACD80A38 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9852BD7610E4EB8D1F1F15 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0D3CE2F2B47CF6B4CF23AD9A /* MiniMaxMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMaxMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		66CB6047206E3560AF6FA089 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = SOURCE_ROOT; };
 		6C9852BD7610E4EB8D1F1F15 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FE0CE252F9EFDE64EA7D9005 /* MiniMaxMonitorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniMaxMonitorApp.swift; sourceTree = "<group>"; };
 		FFCC4D00DC20215449BDDA2F /* UsageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageManager.swift; sourceTree = "<group>"; };
@@ -39,6 +41,7 @@
 		D75362C7CA72A6E4B08754A9 = {
 			isa = PBXGroup;
 			children = (
+				66CB6047206E3560AF6FA089 /* AppIcon.appiconset */,
 				4569672AD41453F0A0DE04F0 /* Sources */,
 				C956188B803ECF0359077F49 /* Products */,
 			);
@@ -62,6 +65,7 @@
 			buildConfigurationList = 6BD61761963FD45FD734FC77 /* Build configuration list for PBXNativeTarget "MiniMaxMonitor" */;
 			buildPhases = (
 				0A897B7F2A5E9460D6DCB376 /* Sources */,
+				ACD3ECE5FF088EC1A2AE42BF /* Resources */,
 			);
 			buildRules = (
 			);
@@ -81,7 +85,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2640;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					F4CCA76882BE2044FCB7ED34 = {
 						ProvisioningStyle = Automatic;
@@ -107,6 +111,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		ACD3ECE5FF088EC1A2AE42BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65B4489A0C6C648ED294A492 /* AppIcon.appiconset in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0A897B7F2A5E9460D6DCB376 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -126,11 +141,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = VHL4P85M5X;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
@@ -179,11 +191,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -207,7 +217,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = MiniMaxMonitor;
 				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.9;
@@ -219,11 +228,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = VHL4P85M5X;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
@@ -272,11 +278,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -293,7 +297,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = MiniMaxMonitor;
 				SDKROOT = macosx;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.9;
