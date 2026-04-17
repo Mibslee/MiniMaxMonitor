@@ -182,7 +182,7 @@ struct ModelUsageRow: View {
     }
     
     var usageColor: Color {
-        return .green
+        return .primary
     }
 }
 
@@ -204,11 +204,11 @@ struct UsageProgressBar: View {
     }
     
     var backgroundColor: Color {
-        return Color.green.opacity(0.2)
+        return Color.green.opacity(0.15)
     }
     
     var barColor: Color {
-        return .green
+        return Color(red: 0.2, green: 0.7, blue: 0.3)
     }
 }
 

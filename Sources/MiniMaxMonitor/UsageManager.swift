@@ -143,16 +143,10 @@ class UsageManager: ObservableObject {
     }
     
     var sortedModels: [ModelRemain] {
-        let priorityOrder: [String] = ["MiniMax-M", "image", "coding-plan", "speech-hd", "music", "Hailuo"]
-        
-        return modelRemains.sorted { a, b in
-            let aIndex = priorityOrder.firstIndex { a.modelName?.contains($0) == true } ?? 999
-            let bIndex = priorityOrder.firstIndex { b.modelName?.contains($0) == true } ?? 999
-            
-            if aIndex != bIndex {
-                return aIndex < bIndex
-            }
-            return a.currentIntervalTotalCount > b.currentIntervalTotalCount
+        return modelRemains.filter { $0.currentIntervalTotalCount > 0 }.sorted { a, b in
+            let aRemaining = a.currentIntervalTotalCount - a.currentIntervalUsageCount
+            let bRemaining = b.currentIntervalTotalCount - b.currentIntervalUsageCount
+            return aRemaining > bRemaining
         }
     }
     

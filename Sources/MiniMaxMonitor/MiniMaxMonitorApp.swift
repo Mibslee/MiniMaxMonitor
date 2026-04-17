@@ -62,12 +62,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let lineWidth: CGFloat = 2.5
         
         let usedPercentage = 100 - percentage
-        let ringColor = NSColor.green
+        let ringColor = NSColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 1.0)
         
         let backgroundPath = NSBezierPath()
         backgroundPath.appendArc(withCenter: center, radius: radius, startAngle: 0, endAngle: 360)
         backgroundPath.lineWidth = lineWidth
-        ringColor.withAlphaComponent(0.2).setStroke()
+        ringColor.withAlphaComponent(0.15).setStroke()
         backgroundPath.stroke()
         
         let startAngle: CGFloat = 90
@@ -133,7 +133,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if popover.isShown {
                 popover.performClose(nil)
             } else {
-                popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+                popover.show(relativeTo: button.bounds, of: button, preferredEdge: .maxY)
                 popover.contentViewController?.view.window?.makeKey()
             }
         }

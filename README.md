@@ -2,6 +2,10 @@
 
 macOS 菜单栏应用，实时显示 MiniMax API 使用量余额。
 
+## GitHub
+
+https://github.com/Mibslee/MiniMaxMonitor
+
 ## 功能
 
 - 菜单栏显示圆环图标，显示文本模型使用量
@@ -9,6 +13,7 @@ macOS 菜单栏应用，实时显示 MiniMax API 使用量余额。
 - 支持国际版和大陆版切换
 - 自动定时刷新
 - 绿色进度条直观展示使用比例
+- 按剩余量排序（剩余越少越靠前）
 
 ## 环境要求
 
