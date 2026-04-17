@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		208ABFACAD120D08C1C81D9F /* MiniMaxMonitorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0CE252F9EFDE64EA7D9005 /* MiniMaxMonitorApp.swift */; };
-		65B4489A0C6C648ED294A492 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 66CB6047206E3560AF6FA089 /* AppIcon.appiconset */; };
+		65B4489A0C6C648ED294A492 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66CB6047206E3560AF6FA089 /* Assets.xcassets */; };
 		90B89B53D256E80DEB309D1C /* UsageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCC4D00DC20215449BDDA2F /* UsageManager.swift */; };
 		C1D7222822F43690ACD80A38 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9852BD7610E4EB8D1F1F15 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0D3CE2F2B47CF6B4CF23AD9A /* MiniMaxMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMaxMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		66CB6047206E3560AF6FA089 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = SOURCE_ROOT; };
+		66CB6047206E3560AF6FA089 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		6C9852BD7610E4EB8D1F1F15 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FE0CE252F9EFDE64EA7D9005 /* MiniMaxMonitorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniMaxMonitorApp.swift; sourceTree = "<group>"; };
 		FFCC4D00DC20215449BDDA2F /* UsageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageManager.swift; sourceTree = "<group>"; };
@@ -41,7 +41,7 @@
 		D75362C7CA72A6E4B08754A9 = {
 			isa = PBXGroup;
 			children = (
-				66CB6047206E3560AF6FA089 /* AppIcon.appiconset */,
+				66CB6047206E3560AF6FA089 /* Assets.xcassets */,
 				4569672AD41453F0A0DE04F0 /* Sources */,
 				C956188B803ECF0359077F49 /* Products */,
 			);
@@ -116,7 +116,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65B4489A0C6C648ED294A492 /* AppIcon.appiconset in Resources */,
+				65B4489A0C6C648ED294A492 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
