@@ -114,7 +114,15 @@ class UsageManager: ObservableObject {
             
             if httpResponse.statusCode != 200 {
                 let responseString = String(data: data, encoding: .utf8) ?? ""
-                errorMessage = "请求失败: \(httpResponse.statusCode)\n\(responseString)"
+                if httpResponse.statusCode == 401 {
+                    errorMessage = "API Key 无效，请重新设置"
+                } else if httpResponse.statusCode == 403 {
+                    errorMessage = "无权限，请检查 API Key"
+                } else if httpResponse.statusCode >= 500 {
+                    errorMessage = "服务器错误，请稍后重试"
+                } else {
+                    errorMessage = "请求失败: \(httpResponse.statusCode)"
+                }
                 isLoading = false
                 return
             }

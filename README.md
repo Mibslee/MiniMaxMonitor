@@ -8,12 +8,13 @@ https://github.com/Mibslee/MiniMaxMonitor
 
 ## 功能
 
-- 菜单栏显示圆环图标，显示文本模型使用量
-- 点击展开详情列表，显示所有模型的使用量
-- 支持国际版和大陆版切换
-- 自动定时刷新
+- 菜单栏圆环图标显示文本模型使用量
+- 点击展开详情列表，按剩余量排序
+- 支持国际版 (minimax.io) 和大陆版 (minimaxi.com)
+- 自动定时刷新（可配置间隔）
 - 绿色进度条直观展示使用比例
-- 按剩余量排序（剩余越少越靠前）
+- 深色/浅色模式自动适配
+- 详细的网络错误提示
 
 ## 环境要求
 
@@ -22,52 +23,53 @@ https://github.com/Mibslee/MiniMaxMonitor
 
 ## 安装
 
-1. 克隆项目到本地
+1. 克隆项目：`git clone https://github.com/Mibslee/MiniMaxMonitor.git`
 2. 用 Xcode 打开 `MiniMaxMonitor.xcodeproj`
-3. 修改 Bundle Identifier（如果需要打包）
-4. 选择签名证书（推荐 "Sign to Run Locally" 用于开发）
-5. 编译运行 (Cmd+R)
+3. 编译运行 (Cmd+R)
 
 ## 配置
 
-1. 运行应用后，点击菜单栏的圆环图标
+1. 运行应用后，点击菜单栏圆环图标
 2. 点击设置按钮（齿轮图标）
-3. 选择区域：
-   - Global (minimax.io) - 国际版
-   - 中国大陆 (minimaxi.com) - 大陆版
-4. 输入 API Key（在 MiniMax 开放平台 → 接口密钥 获取）
-5. 设置刷新间隔
-6. 保存
+3. 选择区域：Global 或 中国大陆
+4. 输入 API Key
+5. 设置刷新间隔，保存
 
-## 开发
-
-### 项目结构
+## 项目结构
 
 ```
-MiniMaxMonitor/
-├── Sources/MiniMaxMonitor/
-│   ├── MiniMaxMonitorApp.swift  # 主程序入口
-│   ├── ContentView.swift        # 菜单栏弹出界面
-│   └── UsageManager.swift        # API 调用和数据处理
-├── project.yml                  # XcodeGen 配置
-└── MiniMaxMonitor.xcodeproj    # Xcode 项目
+Sources/MiniMaxMonitor/
+├── MiniMaxMonitorApp.swift  # 菜单栏图标、弹出逻辑
+├── ContentView.swift        # UI 界面
+└── UsageManager.swift      # API 调用、数据处理
 ```
 
-### 技术栈
+## 技术栈
 
-- SwiftUI
-- AppKit (菜单栏)
-- URLSession (网络请求)
+- SwiftUI + AppKit
+- Native macOS theming (dark/light mode)
+- URLSession
 
-### 主要依赖
+## 隐私说明
 
-- 无外部依赖，纯 SwiftUI + AppKit
+- API Key 存储在本地 UserDefaults
+- 仅用于查询套餐余额，不上传任何数据
 
-## 注意事项
+## App Store 上架
 
-- API Key 保存在 UserDefaults 中，仅本地存储
-- 应用为菜单栏应用，不在 Dock 显示
-- 刷新间隔默认为 60 秒
+### 1. 注册 Bundle ID
+https://developer.apple.com/account/resources/identifiers/list
+
+### 2. 创建 App Store 记录
+https://appstoreconnect.apple.com
+
+### 3. 准备截图
+需要 macOS 应用截图（可用 Cmd+Shift+4 截取）
+
+### 4. 上传
+Xcode → Product → Archive → Distribute App → App Store Connect
+
+### 5. 提交审核
 
 ## 许可证
 

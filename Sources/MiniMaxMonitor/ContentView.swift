@@ -193,22 +193,14 @@ struct UsageProgressBar: View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(backgroundColor)
+                    .fill(Color.green.opacity(0.15))
                     .frame(height: 8)
                 
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(barColor)
+                    .fill(Color(red: 0.2, green: 0.7, blue: 0.3))
                     .frame(width: geometry.size.width * CGFloat(percentage / 100), height: 8)
             }
         }
-    }
-    
-    var backgroundColor: Color {
-        return Color.green.opacity(0.15)
-    }
-    
-    var barColor: Color {
-        return Color(red: 0.2, green: 0.7, blue: 0.3)
     }
 }
 
@@ -247,8 +239,8 @@ struct SettingsView: View {
                     .fontWeight(.medium)
                 SecureField("输入你的 MiniMax API Key", text: $inputKey)
                     .textFieldStyle(.roundedBorder)
-                Text("在 MiniMax 开放平台的 \"接口密钥\" 中获取")
-                    .font(.caption)
+                Text("API Key 仅用于查询套餐余额，本地保存，不上传任何服务器")
+                    .font(.caption2)
                     .foregroundColor(.secondary)
             }
             
