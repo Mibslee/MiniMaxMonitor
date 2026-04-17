@@ -16,6 +16,7 @@
 /* Begin PBXFileReference section */
 		0D3CE2F2B47CF6B4CF23AD9A /* MiniMaxMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniMaxMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CB6047206E3560AF6FA089 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		A1B2C3D4E5F6A7B8C9D0E1F2 /* MiniMaxMonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MiniMaxMonitor.entitlements; sourceTree = SOURCE_ROOT; };
 		6C9852BD7610E4EB8D1F1F15 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FE0CE252F9EFDE64EA7D9005 /* MiniMaxMonitorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniMaxMonitorApp.swift; sourceTree = "<group>"; };
 		FFCC4D00DC20215449BDDA2F /* UsageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageManager.swift; sourceTree = "<group>"; };
@@ -42,6 +43,7 @@
 			isa = PBXGroup;
 			children = (
 				66CB6047206E3560AF6FA089 /* Assets.xcassets */,
+				A1B2C3D4E5F6A7B8C9D0E1F2 /* MiniMaxMonitor.entitlements */,
 				4569672AD41453F0A0DE04F0 /* Sources */,
 				C956188B803ECF0359077F49 /* Products */,
 			);
@@ -140,6 +142,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MiniMaxMonitor.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -229,6 +232,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MiniMaxMonitor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = VHL4P85M5X;
