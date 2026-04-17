@@ -1,0 +1,33 @@
+name: MiniMaxMonitor
+options:
+  bundleId: com.minimax.monitor
+  deploymentTarget:
+    macOS: "13.0"
+  xcodeVersion: "15.0"
+
+settings:
+  base:
+    PRODUCT_NAME: MiniMaxMonitor
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.9"
+    GENERATE_INFOPLIST_FILE: YES
+    INFOPLIST_KEY_CFBundleDisplayName: "MiniMax Monitor"
+
+targets:
+  MiniMaxMonitor:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources
+        type: group
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.minimax.monitor
+        INFOPLIST_KEY_LSUIElement: YES
+        INFOPLIST_KEY_NSHumanReadableCopyright: "Copyright © 2026. All rights reserved."
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
+        ENABLE_HARDENED_RUNTIME: NO
+        INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.utilities"
+        LD_RUNPATH_SEARCH_PATHS: "@executable_path/../Frameworks"
