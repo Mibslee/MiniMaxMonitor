@@ -4,13 +4,13 @@ struct ContentView: View {
     @AppStorage("apiKey") var apiKey: String = ""
     @AppStorage("refreshInterval") var refreshInterval: Int = 60
     @ObservedObject var usageManager = UsageManager.shared
-    
+
     @State private var showingSettings = false
-    
+
     var body: some View {
         VStack(spacing: 12) {
             headerView
-            
+
             if apiKey.isEmpty {
                 emptyStateView
             } else if usageManager.isLoading {
@@ -23,9 +23,9 @@ struct ContentView: View {
                 Text("暂无数据")
                     .foregroundColor(.secondary)
             }
-            
+
             Divider()
-            
+
             bottomBar
         }
         .padding()
@@ -34,7 +34,7 @@ struct ContentView: View {
             SettingsView(isPresented: $showingSettings)
         }
     }
-    
+
     var headerView: some View {
         HStack {
             Text("MiniMax")
@@ -47,7 +47,7 @@ struct ContentView: View {
             .buttonStyle(.borderless)
         }
     }
-    
+
     var emptyStateView: some View {
         VStack(spacing: 12) {
             Image(systemName: "key.fill")
@@ -63,12 +63,12 @@ struct ContentView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-    
+
     var loadingView: some View {
         ProgressView()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-    
+
     func errorView(message: String) -> some View {
         VStack(spacing: 12) {
             Image(systemName: "exclamationmark.triangle.fill")
@@ -87,22 +87,19 @@ struct ContentView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-    
+
     var usageListView: some View {
-        let sortedModels = usageManager.sortedModels
-        
-        return ScrollView {
+        // Fix #2: sortedModels already filters totalCount > 0, no redundant check needed
+        ScrollView {
             VStack(spacing: 10) {
-                ForEach(sortedModels, id: \.modelName) { model in
-                    if model.currentIntervalTotalCount > 0 {
-                        ModelUsageRow(model: model)
-                    }
+                ForEach(usageManager.sortedModels, id: \.modelName) { model in
+                    ModelUsageRow(model: model)
                 }
             }
             .padding(.vertical, 4)
         }
     }
-    
+
     var bottomBar: some View {
         HStack {
             Button(action: {
@@ -115,17 +112,18 @@ struct ContentView: View {
             }
             .buttonStyle(.borderless)
             .disabled(usageManager.isLoading)
-            
+
             Spacer()
-            
+
             if let lastUpdated = usageManager.lastUpdated {
-                Text(lastUpdated, formatter: timeFormatter)
+                // Fix #5: static DateFormatter, not recreated on every render
+                Text(lastUpdated, formatter: Self.timeFormatter)
                     .font(.caption2)
                     .foregroundColor(.secondary)
             }
-            
+
             Spacer()
-            
+
             Button(action: {
                 NSApplication.shared.terminate(nil)
             }) {
@@ -135,17 +133,18 @@ struct ContentView: View {
             .buttonStyle(.borderless)
         }
     }
-    
-    var timeFormatter: DateFormatter {
+
+    // Fix #5: static to avoid recreating DateFormatter on every render
+    private static let timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         return formatter
-    }
+    }()
 }
 
 struct ModelUsageRow: View {
     let model: ModelRemain
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
@@ -155,49 +154,60 @@ struct ModelUsageRow: View {
                 Spacer()
                 Text(percentageText)
                     .font(.caption2)
+                    // Fix #8: color reflects urgency
                     .foregroundColor(usageColor)
             }
-            
-            UsageProgressBar(percentage: usedPercentage)
+
+            UsageProgressBar(percentage: remainingPercentage)
                 .frame(height: 8)
         }
         .padding(8)
         .background(Color.gray.opacity(0.08))
         .cornerRadius(6)
     }
-    
+
     var modelDisplayName: String {
         model.modelName ?? "未知模型"
     }
-    
-    var usedPercentage: Double {
+
+    // currentIntervalUsageCount is remaining quota; total is the plan total
+    var remainingPercentage: Double {
         guard model.currentIntervalTotalCount > 0 else { return 0 }
         return Double(model.currentIntervalUsageCount) / Double(model.currentIntervalTotalCount) * 100
     }
-    
+
     var percentageText: String {
-        let used = model.currentIntervalUsageCount
+        let remaining = model.currentIntervalUsageCount
         let total = model.currentIntervalTotalCount
-        return "\(used)/\(total) (\(Int(usedPercentage))%)"
+        return "\(remaining)/\(total) (\(Int(remainingPercentage))%)"
     }
-    
+
+    // Color reflects remaining quota: low remaining = red/orange
     var usageColor: Color {
+        if remainingPercentage < 20 { return .red }
+        if remainingPercentage < 50 { return .orange }
         return .primary
     }
 }
 
 struct UsageProgressBar: View {
-    let percentage: Double
-    
+    let percentage: Double  // remaining percentage (0–100)
+
+    var fillColor: Color {
+        if percentage < 20 { return .red }
+        if percentage < 50 { return Color(red: 1.0, green: 0.6, blue: 0.0) }
+        return Color(red: 0.2, green: 0.7, blue: 0.3)
+    }
+
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(Color.green.opacity(0.15))
+                    .fill(fillColor.opacity(0.15))
                     .frame(height: 8)
-                
+
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(Color(red: 0.2, green: 0.7, blue: 0.3))
+                    .fill(fillColor)
                     .frame(width: geometry.size.width * CGFloat(percentage / 100), height: 8)
             }
         }
@@ -208,16 +218,16 @@ struct SettingsView: View {
     @Binding var isPresented: Bool
     @AppStorage("apiKey") var apiKey: String = ""
     @AppStorage("refreshInterval") var refreshInterval: Int = 60
-    
+
     @State private var inputKey: String = ""
     @State private var selectedInterval: Int = 60
     @State private var selectedRegion: String = ""
-    
+
     var body: some View {
         VStack(spacing: 20) {
             Text("设置")
                 .font(.headline)
-            
+
             VStack(alignment: .leading, spacing: 8) {
                 Text("区域")
                     .font(.subheadline)
@@ -232,7 +242,7 @@ struct SettingsView: View {
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
-            
+
             VStack(alignment: .leading, spacing: 8) {
                 Text("API Key")
                     .font(.subheadline)
@@ -243,7 +253,7 @@ struct SettingsView: View {
                     .font(.caption2)
                     .foregroundColor(.secondary)
             }
-            
+
             VStack(alignment: .leading, spacing: 8) {
                 Text("刷新间隔")
                     .font(.subheadline)
@@ -256,27 +266,26 @@ struct SettingsView: View {
                 }
                 .pickerStyle(.segmented)
             }
-            
+
             Spacer()
-            
+
             HStack {
                 Button("取消") {
                     isPresented = false
                 }
                 .keyboardShortcut(.cancelAction)
-                
+
                 Spacer()
-                
+
                 Button("保存") {
                     apiKey = inputKey
                     refreshInterval = selectedInterval
                     if let region = MiniMaxRegion(rawValue: selectedRegion) {
                         UsageManager.shared.selectedRegion = region
                     }
-                    Task {
-                        await UsageManager.shared.fetchUsage()
-                    }
                     isPresented = false
+                    // Fix #4 & #10: notify AppDelegate to restart timer and refresh icon
+                    NotificationCenter.default.post(name: .settingsDidChange, object: nil)
                 }
                 .keyboardShortcut(.defaultAction)
                 .buttonStyle(.borderedProminent)
