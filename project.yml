@@ -25,9 +25,12 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.minimax.monitor
         INFOPLIST_KEY_LSUIElement: YES
-        INFOPLIST_KEY_NSHumanReadableCopyright: "Copyright © 2026. All rights reserved."
+        INFOPLIST_KEY_NSHumanReadableCopyright: "Copyright © 2026 MiniMax Monitor. All rights reserved."
         CODE_SIGN_IDENTITY: "-"
-        CODE_SIGN_STYLE: Manual
-        ENABLE_HARDENED_RUNTIME: NO
+        CODE_SIGN_STYLE: Automatic
+        ENABLE_HARDENED_RUNTIME: YES
         INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.utilities"
         LD_RUNPATH_SEARCH_PATHS: "@executable_path/../Frameworks"
+        INFOPLIST_KEY_NSHighResolutionCapable: YES
+        INFOPLIST_KEY_NSSupportsAutomaticTermination: YES
+        INFOPLIST_KEY_NSSupportsSuddenTermination: YES
